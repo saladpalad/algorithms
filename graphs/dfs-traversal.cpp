@@ -1,3 +1,9 @@
+/*
+Implementation of DFS Traversal (Iterative approach w/ a stack)
+Time Complexity: O(m+n)
+Ch. 3.2 - 3.3
+*/
+
 #include <iostream>
 #include <stack>
 #include <vector>

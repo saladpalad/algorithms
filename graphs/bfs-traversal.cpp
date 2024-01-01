@@ -1,4 +1,11 @@
+/*
+Implementation of BFS-Traversal
+Time Complexity: O(m+n)
+Ch. 3.2 - 3.3
+*/
+
 #include <iostream>
+#include <ostream>
 #include <queue>
 #include <vector>
 
@@ -15,23 +22,31 @@ public:
   }
 
   void BFS(T s) {
-    std::vector<std::vector<T>> layers;
     std::queue<T> q;
     discovered[s] = true;
     q.push(s);
 
+    int currentLayer = 0;
+
     while (!q.empty()) {
-      T u = q.front();
-      q.pop();
+      int layerSize = q.size();
 
-      std::cout << u << " ";
+      std::cout << "Layer " << currentLayer << ": ";
+      for (int i = 0; i < layerSize; ++i) {
+        T u = q.front();
+        q.pop();
 
-      for (T v : adjList[u]) {
-        if (!discovered[v]) {
-          discovered[v] = true;
-          q.push(v);
+        std::cout << u << " ";
+
+        for (T v : adjList.at(u)) {
+          if (!discovered[v]) {
+            discovered[v] = true;
+            q.push(v);
+          }
         }
       }
+      std::cout << std::endl;
+      currentLayer++;
     }
   }
 };
@@ -48,7 +63,7 @@ int main() {
   g.addEdge(3, 5);
   g.addEdge(4, 5);
 
-  std::cout << "BFS Traversal starting from vertex 0: ";
+  std::cout << "BFS Traversal starting from vertex 0: " << std::endl;
   g.BFS(0);
 
   return 0;
